@@ -14,7 +14,7 @@
 }
 
 *{box-sizing:border-box}
-html,body,#root{height:100%}
+html,body,#root{width: 100%; overflow-x: hidden;}
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
@@ -23,9 +23,9 @@ body{
 }
 
 .app{
-  max-width: 1440px;
+  max-width: 1200px;
   margin: 24px auto;
-  padding: 24px;
+  padding-inline: 16px;
   display: grid;
   grid-template-columns: 440px 1fr;
   gap: 24px;
@@ -35,6 +35,7 @@ body{
   background: var(--panel);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  min-width: 0;
 }
 
 .left{
@@ -126,8 +127,8 @@ body{
 }
 .grid{
   display:grid;
-  grid-template-columns: repeat(6, minmax(160px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
 }
 .grid .tile{
   padding:12px;
@@ -154,6 +155,7 @@ body{
   font-size: 12px;
 }
 
+img, svg { max-width: 100%; height: auto; }
 /* Autocomplete dropdown */
 .suggest{
   position: absolute;
@@ -179,6 +181,7 @@ body{
 .suggest-item.active{ background: #eef2ff; }
 .suggest-item:hover{ background: #f3f4f6; }
 
+.brand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:20px; }
 .kv{
   display:flex; align-items:center; justify-content:space-between;
 }
@@ -200,7 +203,7 @@ body{
 }
 
 @media (max-width: 1024px){
-  .app{ grid-template-columns: 1fr; }
+  .app{ grid-template-columns: 1fr; padding-inline: 12px; }
   .grid{ grid-template-columns: repeat(3, 1fr); }
   .highlights{ grid-template-columns: 1fr 1fr; }
 }
