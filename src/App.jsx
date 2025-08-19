@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useEffect } from 'react';
 import dayjs from 'dayjs'
 import useWeather from './features/weather/useWeather'
 import SearchBar from './components/searchbar'
@@ -6,6 +7,7 @@ import UnitToggle from './components/unittoggle'
 import ForecastCard from './components/forecastcard'
 import HighlightCard from './components/highlightcard'
 import Icon from './components/icon'
+import Brand from './components/brand';
 
 export default function App(){
   const [query, setQuery] = useState('Ho Chi Minh')
@@ -20,6 +22,8 @@ export default function App(){
   const location = data?.loc ? `${data.loc.name}${data.loc.state ? ', '+data.loc.state:''}, ${data.loc.country}` : ''
   const rainProb = Math.round((data?.pop ?? 0) * 100)
 
+  useEffect(() => { document.title = 'Weathervine'; }, []);
+  
   function windDisplay(ms){
     if (unit === 'metric') return Math.round(ms * 3.6)
     return Math.round(ms * 2.23694)
@@ -30,6 +34,7 @@ export default function App(){
   return (
     <div className="app">
       <div className="left">
+        <Brand size={28} />
         <SearchBar onSearch={setQuery} />
         <div className="kv">
           <div className="location">📍 {location || '—'}</div>
